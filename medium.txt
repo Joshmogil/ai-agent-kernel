@@ -1,0 +1,58 @@
+
+
+A supernatural project creating an autonomous AI agent from scratch using Google's Gemini and python.
+
+Basics of an AI agent:
+
+1. A feedback loop or life cycle
+2. Prompting an LLM with its own output to some extent
+
+Those are the nuts and bolts of it.
+
+A simple llm agent might look like this (psuedocode)
+
+1. user asks LLM to do something
+while True:
+    2. LLM tasks itself to do something
+    3. <do something using llm output>
+    4. Ask LLM to review what happened, go back to 2
+
+The interesting part of agents is that they can learn from mistakes (emphasis: the llm isn't learning, the system is) and do novel things.
+
+Like executing code, back to our example from earlier:
+
+1. input: "Send email to josh" + <some additional context about what to put in the email>
+2. LLM is provided information about how to send an email (for example email_function(to_email: str, from_email: str, content: str))
+3. LLM talks to itself in a loop (see example 1), adjusts email content until some condition is met, for example length or some qualitative factore 
+3. LLM provides inputs to function: email_function(to_email: "josh@gmail.com", from_email: "gemini@gmail.com", content: str)
+4. The function is executed using the llm's outputs
+5. Agent bows and exits stage.
+
+Anyone who got excited the first time they discovered the exec statement finds this fascinating. Agents are like a juiced up exec statements.
+
+Looking at the email example, this just wasn't possible before LLMs and it is now. That's amazing.
+It's also scary, what if the function wasn't an email function, but an actual exec statement? 
+It's not hard to see a scenario where someone creates an agent with raw exec capabilties that is tasked with doing malicious things on the open internet, but that's not what this article is about.
+
+2025 Prediction: Someone will do exactly this and it will be a newsworthy event <thinking emoji>
+
+Today I will be talking about a unique way to build long lived agents using an actor model as well as some themes from OS kernels.
+
+The key pieces of this approach are:
+- A network of agents with one primary agent capable of spinning up/down secondary agents
+- Tightly controlled, well established I/O resources for the agent network. No execs to the open internet.
+- Memory using specific registers for subjects, managed by the primary agent.
+- Controls for shared memory access for secondary agents
+- A small interface for user interaction. User defines a goal for the primary agent as well as input/output devices and it handles the rest.
+
+The end result is a shockingly smart AI agent with surprisingly light costs.
+I recently got done watching all 15 seasons of the CW show Supernatural, so most of the code is supernatural themed. If this is annoying or you don't care for the show, please close the tab and read a different article.
+
+
+
+
+
+
+
+Drawbacks:
+- Agents can be expensive
