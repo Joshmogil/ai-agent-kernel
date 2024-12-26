@@ -1,4 +1,5 @@
 import random
+import secrets
 
 
 class NameGenerator:
@@ -14,6 +15,7 @@ class NameGenerator:
 
         self.possible_names = len(self.adverbs) * len(self.adjectives) * len(self.angel_names)
         print(f"Possible names: {self.possible_names}")
+
     def generate_name(self):
         original = tries = 3
         while tries > 0:
@@ -21,6 +23,19 @@ class NameGenerator:
             if name not in self.names:
                 self.names.append(name)
                 return name
+            tries -= 1
+        raise Exception(f"Could not generate a unique name after {original} tries.")
+    
+    def generate_name_and_personality(self):
+        original = tries = 3
+        while tries > 0:
+            adverb = random.choice(self.adverbs)
+            adjective = random.choice(self.adjectives)
+            name = random.choice(self.angel_names)
+            full_name = adverb.capitalize() + adjective.capitalize() + name
+            if full_name not in self.names:
+                self.names.append(full_name)
+                return full_name , f"{adverb} {adjective}"
             tries -= 1
         raise Exception(f"Could not generate a unique name after {original} tries.")
 
@@ -39,3 +54,6 @@ def key_by_value(d: dict, value):
 #    except Exception as e:
 #        print(e)
 #        break
+
+def get_random_id() -> str:
+    return secrets.token_hex(24)

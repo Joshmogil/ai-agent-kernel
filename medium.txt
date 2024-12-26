@@ -48,7 +48,44 @@ The key pieces of this approach are:
 The end result is a shockingly smart AI agent with surprisingly light costs.
 I recently got done watching all 15 seasons of the CW show Supernatural, so most of the code is supernatural themed. If this is annoying or you don't care for the show, please close the tab and read a different article.
 
+The first thing people usually get wrong with calling out to LLMs via an API is async.
+An API call to a provider like Google Gemini or Openai could take a few seconds.
+In a regular program this is a show stopper, but when working with LLM's it's a fact of life.
+At the end of the day we need that response back, but what do we if we want to get multiple responses back at the same time?
+We can't just make a call, get a response, make a call, get a response. It would take too long, it's not time efficient.
+This is where robust handling of async is required. Here I'm introducing something called the prompt - response map
+You can think of it like instead of ordering 1 thing on Amazon and waiting for it to be delivered, then ordering the next thing,
+you place orders for all the things you want right now and they are delivered at the same time.
+Having a robust pattern for this is important for building LLM enabled apps.
+So the pattern is this:
+Give x number of prompts -> send out x number of requests -> get x number of responses
 
+In python it looks like this:
+
+async def pool_prompts(prompts: list[str]):
+    tasks = [LLM.prompt(prompt) for prompt in prompts]
+    results = await asyncio.gather(*tasks)
+    prompt_result_dict = dict(zip(prompts, results))
+    return prompt_result_dict
+
+You give it something like this:
+prompts = [
+    "Your first prompt here",
+    "Your second prompt here",
+    "Your third prompt here"
+]
+
+and it response with this:
+
+{
+    "Your first prompt here":"Response 1 ..."
+    "Your second prompt here":"Response 2 ..."
+    "Your third prompt here" "Response 3 ..."
+}
+
+... without blocking our precious python interpreter for each individual prompt.
+
+So we will start with that. 
 
 
 

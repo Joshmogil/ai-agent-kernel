@@ -1,0 +1,343 @@
+[
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "utils",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "utils",
+        "description": "utils",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "google.generativeai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "google.generativeai",
+        "description": "google.generativeai",
+        "detail": "google.generativeai",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "dotenv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "inspect",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "inspect",
+        "description": "inspect",
+        "detail": "inspect",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "secrets",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "secrets",
+        "description": "secrets",
+        "detail": "secrets",
+        "documentation": {}
+    },
+    {
+        "label": "LLM",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class LLM:\n    @staticmethod\n    async def call(input: str) -> str:\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        model._generation_config\n        response = await model.generate_content_async(input)\n        return response.candidates[0].content.parts[0].text\n    @staticmethod\n    async def test(prompt: str):\n        start_time = time.time()",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "Register",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class Register:\n    \"\"\"\n    Registers are used to store data. They can be set, added to, cleared, and read.\n    Registers are created with a name and a description.\n    Register names must be unique, and are used to access the register.\n    Register descriptions are used to describe the contents of the register.\n    \"\"\"\n    def __init__(self, name: str, description: str, size: int = 1000):\n        self.content: str = \"\"\n        self.name = name",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "Thought",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class Thought:\n    def __init__(self,owner_name: int, information: str, summary_size: int = 300, opinion_size: int = 400, inference_margin: float = 0.1):\n        self.information = information\n        self.summary_size = summary_size * (1 - inference_margin)\n        self.opinion_size = opinion_size * (1 - inference_margin)\n        self.owner_name = owner_name\n    async def trigger(self):\n        \"\"\"Trigger must be called to generate the summary and opinion. Context will generally be included as part of 'information' to the call.\"\"\"\n        summary = await LLM.call(f'Summarize this information in under {self.summary_size} characters: {self.information}')\n        self.summary = summary",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "ChannelIn",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class ChannelIn:\n    pass\nclass ChannelOut:\n    pass\nclass Angel:\n    def __init__(self, name: str, goal: str,  manager: 'Chuck'):\n        self.name = name\n        self.goal = goal\n        self.manager = manager\n        self.manager_messages: list[str] = []",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "ChannelOut",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class ChannelOut:\n    pass\nclass Angel:\n    def __init__(self, name: str, goal: str,  manager: 'Chuck'):\n        self.name = name\n        self.goal = goal\n        self.manager = manager\n        self.manager_messages: list[str] = []\n        self.locked_registers: list[str] = []\n        self.locked_channels: list[str] = []",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "Angel",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class Angel:\n    def __init__(self, name: str, goal: str,  manager: 'Chuck'):\n        self.name = name\n        self.goal = goal\n        self.manager = manager\n        self.manager_messages: list[str] = []\n        self.locked_registers: list[str] = []\n        self.locked_channels: list[str] = []\n    def smite(self):\n        for register in self.locked_registers:",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "Chuck",
+        "kind": 6,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "class Chuck:\n    def __init__(self,\n                goal: str):\n        self.goal = goal\n        self.memory: dict[str, Register] = {}\n        self.memory_locks: dict[str, str] = {} # register_name: child_name\n        self.pub_thoughts: dict[str, Thought] = {}\n        self.child_message_queue: dict[str, str] = {}\n        self.priv_thoughts: dict[str, Thought] = {}\n        self.InChannels: dict[str, ChannelIn] = {}",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"Register script with logging.\")\n    parser.add_argument('--log-level', default='WARNING', help='Set the logging level (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL)')\n    args = parser.parse_args()\n    logging.basicConfig(level=getattr(logging, args.log_level.upper(), None))\n    chuck = Chuck(goal=\"Create a new fitness app.\")\n    async def run_lifecycle():\n        #while True:\n        await chuck.chuck_lifecycle()\n    asyncio.run(run_lifecycle())",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "attempt1",
+        "description": "attempt1",
+        "peekOfCode": "API_KEY = os.getenv(\"GEMINI_API_KEY\")\nai.configure(api_key=API_KEY)\nclass LLM:\n    @staticmethod\n    async def call(input: str) -> str:\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        model._generation_config\n        response = await model.generate_content_async(input)\n        return response.candidates[0].content.parts[0].text\n    @staticmethod",
+        "detail": "attempt1",
+        "documentation": {}
+    },
+    {
+        "label": "LLM",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        response = await model.generate_content_async(prompt)\n        end_time = time.time()\n        logging.debug(f\"Ended at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time))}\")\n        logging.debug(f\"Duration: {end_time - start_time:.2f} seconds\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Chuck",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Chuck:\n    def __init__(self):\n        self.pipeline: list[PipelineTask] = []\n        self.recent_result_set: dict[id, str]\n        self.time: int = 0\n    def add(self, task_id: str, prompt: str):\n        self.pipeline.append((task_id,prompt))\n    def lookup(self, task_id: str):\n        return self.recent_result_set.get(task_id)\n    async def run(self):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "IO",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class IO:\n    def __init__(self):\n        pass\n    def __reflect__(self):\n        return inspect.getsource(type(self))\nclass Terminal(IO):\n    def __init__(self):\n        super().__init__()\n    def execute(self, command: str) -> str:\n        \"\"\"Execute a command in the shell. Each command gets a new shell.\"\"\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Terminal",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Terminal(IO):\n    def __init__(self):\n        super().__init__()\n    def execute(self, command: str) -> str:\n        \"\"\"Execute a command in the shell. Each command gets a new shell.\"\"\"\n        try:\n            result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)\n            return result.stdout\n        except subprocess.CalledProcessError as e:\n            return e.stderr",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Angel",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Angel:\n    def __init__(self, goal: str, narrow_goal: str, global_info: str, name: str, thought_depth: int = 4):\n        self.name = name\n        self.thoughts: list[str] = []\n        self.goal = goal\n        self.narrow_goal = narrow_goal\n        self.global_info = global_info\n        self.think_task_id: Id = \"\"\n        self.thought_depth = thought_depth\n        self.in_danger = False",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Metatron",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Metatron:\n    \"\"\"Responsible for condensing information.\"\"\"\n    pass\nclass Lucifer:\n    \"\"\"Responsible for killing angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.examine_angels_task_id: Id = ''\n        self.evaluate_angel_pleas_task_id: Id = ''",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Lucifer",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Lucifer:\n    \"\"\"Responsible for killing angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.examine_angels_task_id: Id = ''\n        self.evaluate_angel_pleas_task_id: Id = ''\n    def examine_angels(self, angels: list[Angel]) -> PipelineTask:\n        prompt=f\"Our goal is to {self.goal}. Carefully review each angel's thoughts and respond with a list of names. Which should be examined if they aren't aligned with our goal. Your list should be a space seprated list of names, e.g. 'Michael Gabriel Raphael'\"\n        for angel in angels:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Jack",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Jack:\n    \"\"\"Responsible for creating angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.create_angels_task_id: Id = ''\n    def decide_to_create_angels(self, angels: list[Angel]) -> PipelineTask:\n        example= [{\n            \"name\": \"Castiel\",\n            \"goal\": \"Save Dean\",",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Castiel",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class Castiel:\n    \"\"\"Responsible for taking action\"\"\"\n    pass\ndef get_current_file_source():\n    import sys\n    current_file = sys.modules[__name__].__file__\n    with open(current_file, 'r') as file:\n        return file.read()\n# Run the main function\nif __name__ == \"__main__\":",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_file_source",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_current_file_source():\n    import sys\n    current_file = sys.modules[__name__].__file__\n    with open(current_file, 'r') as file:\n        return file.read()\n# Run the main function\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Register script with logging.\")\n    parser.add_argument('--log-level', default='WARNING', help='Set the logging level (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL)')\n    args = parser.parse_args()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "API_KEY = os.getenv(\"GEMINI_API_KEY\")\nai.configure(api_key=API_KEY)\nId=str\nPipelineTask = tuple[Id,str]\nclass LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "PipelineTask",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "PipelineTask = tuple[Id,str]\nclass LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        response = await model.generate_content_async(prompt)\n        end_time = time.time()\n        logging.debug(f\"Ended at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time))}\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "NameGenerator",
+        "kind": 6,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "class NameGenerator:\n    def __init__(self):\n        self.names = []\n        self.adverbs = [\"accidentally\", \"always\", \"angrily\", \"annually\", \"anxiously\", \"awkwardly\", \"badly\", \"blindly\", \"boastfully\", \"boldly\", \"bravely\", \"brightly\", \"cheerfully\", \"deftly\", \"deliberately\", \"devotedly\", \"doubtfully\",\n                \"dramatically\", \"dutifully\", \"eagerly\", \"elegantly\", \"enormously\", \"enthusiastically\", \"equally\", \"eventually\", \"exactly\", \"faithfully\", \"fortunately\", \"frequently\", \"generously\", \"gently\", \"gladly\", \"gracefully\"]\n        self.adjectives = [\"adaptable\", \"adventurous\", \"affectionate\", \"ambitious\", \"amiable\", \"compassionate\", \"considerate\", \"courageous\", \"courteous\", \"diligent\", \"empathetic\", \"exuberant\", \"frank\", \"generous\",\n                           \"gregarious\", \"impartial\", \"intuitive\", \"inventive\", \"passionate\", \"persistent\", \"philosophical\", \"practical\", \"rational\", \"reliable\", \"resourceful\", \"sensible\", \"sincere\", \"sympathetic\", \"unassuming\", \"witty\"]\n        self.angel_names = [\"Michael\", \"Gabriel\", \"Raphael\", \"Uriel\", \"Castiel\",\"Lucifer\", \"Raguel\", \"Sariel\", \"Remiel\", \"Jeremiel\", \"Barachiel\", \"Kokabiel\", \"Tzaphqiel\", \"Haniel\", \"Azrael\", \"Metatron\",\n                            \"Sandalphon\", \"Jophiel\", \"Zadkiel\", \"Raziel\", \"Chamuel\", \"Zaphkiel\", \"Zadkiel\", \"Zerachiel\", \"Zophiel\", \"Zuriel\", \"Zadkiel\", \"Zaphkiel\", \"Zerachiel\", \"Zophiel\", \"Zuriel\"]\n        self.possible_names = len(self.adverbs) * len(self.adjectives) * len(self.angel_names)",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "key_by_value",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def key_by_value(d: dict, value):\n    for key, val in d.items():\n        if val == value:\n            return key\n    raise ValueError(f\"Value {value} not found in dictionary\")\n#import time\n#ng = NameGenerator()\n#while True:\n#    try:\n#        print(ng.generate_name())",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_random_id",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def get_random_id() -> str:\n    return secrets.token_hex(24)",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "#ng",
+        "kind": 5,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "#ng = NameGenerator()\n#while True:\n#    try:\n#        print(ng.generate_name())\n#        time.sleep(0.001)\n#    except Exception as e:\n#        print(e)\n#        break\ndef get_random_id() -> str:\n    return secrets.token_hex(24)",
+        "detail": "utils",
+        "documentation": {}
+    }
+]
