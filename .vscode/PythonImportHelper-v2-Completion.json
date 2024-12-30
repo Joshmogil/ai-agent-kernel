@@ -1,5 +1,55 @@
 [
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "Agent",
+        "importPath": "pydantic_ai",
+        "description": "pydantic_ai",
+        "isExtraImport": true,
+        "detail": "pydantic_ai",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "logging",
         "kind": 6,
         "isExtraImport": true,
@@ -63,38 +113,12 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "Tuple",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "inspect",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "inspect",
         "description": "inspect",
         "detail": "inspect",
-        "documentation": {}
-    },
-    {
-        "label": "subprocess",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -113,6 +137,69 @@
         "importPath": "secrets",
         "description": "secrets",
         "detail": "secrets",
+        "documentation": {}
+    },
+    {
+        "label": "get_git_ignored_files",
+        "kind": 2,
+        "importPath": "src.file_classifier",
+        "description": "src.file_classifier",
+        "peekOfCode": "def get_git_ignored_files(directory):\n    try:\n        result = subprocess.run(\n            ['git', 'ls-files', '--others', '--ignored', '--exclude-standard', '--directory'],\n            cwd=directory,\n            check=True,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.PIPE,\n            text=True\n        )",
+        "detail": "src.file_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "is_text_file",
+        "kind": 2,
+        "importPath": "src.file_classifier",
+        "description": "src.file_classifier",
+        "peekOfCode": "def is_text_file(filepath):\n    try:\n        with open(filepath, 'r', encoding='utf-8') as file:\n            file.read()\n        return True\n    except:\n        return False\ndef classify_files(directory):\n    ignored_files = get_git_ignored_files(directory)\n    classified_files = {'text_files': [], 'ignored_files': []}",
+        "detail": "src.file_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "classify_files",
+        "kind": 2,
+        "importPath": "src.file_classifier",
+        "description": "src.file_classifier",
+        "peekOfCode": "def classify_files(directory):\n    ignored_files = get_git_ignored_files(directory)\n    classified_files = {'text_files': [], 'ignored_files': []}\n    for root, dirs, files in os.walk(directory):\n        for file in files:\n            filepath = os.path.join(root, file)\n            relative_path = os.path.relpath(filepath, directory)\n            if relative_path in ignored_files:\n                classified_files['ignored_files'].append(relative_path)\n            elif is_text_file(filepath):",
+        "detail": "src.file_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "directory",
+        "kind": 5,
+        "importPath": "src.file_classifier",
+        "description": "src.file_classifier",
+        "peekOfCode": "directory = '.'\nclassified_files = classify_files(directory)\nprint(\"Text files:\", classified_files['text_files'])\n#print(\"Ignored files:\", classified_files['ignored_files'])",
+        "detail": "src.file_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "classified_files",
+        "kind": 5,
+        "importPath": "src.file_classifier",
+        "description": "src.file_classifier",
+        "peekOfCode": "classified_files = classify_files(directory)\nprint(\"Text files:\", classified_files['text_files'])\n#print(\"Ignored files:\", classified_files['ignored_files'])",
+        "detail": "src.file_classifier",
+        "documentation": {}
+    },
+    {
+        "label": "classify_files",
+        "kind": 2,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "def classify_files(directory: str)-> dict[str, file_type]:\n    pass\n#class \n#agent: Agent = Agent(model=\"gemini-1.5-flash\")",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "file_type",
+        "kind": 5,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "file_type = Literal['ignore', 'code', 'data', 'knowledge']\ndef classify_files(directory: str)-> dict[str, file_type]:\n    pass\n#class \n#agent: Agent = Agent(model=\"gemini-1.5-flash\")",
+        "detail": "src.main",
         "documentation": {}
     },
     {
@@ -199,109 +286,109 @@
     {
         "label": "LLM",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        response = await model.generate_content_async(prompt)\n        end_time = time.time()\n        logging.debug(f\"Ended at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time))}\")\n        logging.debug(f\"Duration: {end_time - start_time:.2f} seconds\")",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Chuck",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Chuck:\n    def __init__(self):\n        self.pipeline: list[PipelineTask] = []\n        self.recent_result_set: dict[id, str]\n        self.time: int = 0\n    def add(self, task_id: str, prompt: str):\n        self.pipeline.append((task_id,prompt))\n    def lookup(self, task_id: str):\n        return self.recent_result_set.get(task_id)\n    async def run(self):",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "IO",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class IO:\n    def __init__(self):\n        pass\n    def __reflect__(self):\n        return inspect.getsource(type(self))\nclass Terminal(IO):\n    def __init__(self):\n        super().__init__()\n    def execute(self, command: str) -> str:\n        \"\"\"Execute a command in the shell. Each command gets a new shell.\"\"\"",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Terminal",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Terminal(IO):\n    def __init__(self):\n        super().__init__()\n    def execute(self, command: str) -> str:\n        \"\"\"Execute a command in the shell. Each command gets a new shell.\"\"\"\n        try:\n            result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)\n            return result.stdout\n        except subprocess.CalledProcessError as e:\n            return e.stderr",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Angel",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Angel:\n    def __init__(self, goal: str, narrow_goal: str, global_info: str, name: str, thought_depth: int = 4):\n        self.name = name\n        self.thoughts: list[str] = []\n        self.goal = goal\n        self.narrow_goal = narrow_goal\n        self.global_info = global_info\n        self.think_task_id: Id = \"\"\n        self.thought_depth = thought_depth\n        self.in_danger = False",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Metatron",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Metatron:\n    \"\"\"Responsible for condensing information.\"\"\"\n    pass\nclass Lucifer:\n    \"\"\"Responsible for killing angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.examine_angels_task_id: Id = ''\n        self.evaluate_angel_pleas_task_id: Id = ''",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Lucifer",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Lucifer:\n    \"\"\"Responsible for killing angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.examine_angels_task_id: Id = ''\n        self.evaluate_angel_pleas_task_id: Id = ''\n    def examine_angels(self, angels: list[Angel]) -> PipelineTask:\n        prompt=f\"Our goal is to {self.goal}. Carefully review each angel's thoughts and respond with a list of names. Which should be examined if they aren't aligned with our goal. Your list should be a space seprated list of names, e.g. 'Michael Gabriel Raphael'\"\n        for angel in angels:",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Jack",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Jack:\n    \"\"\"Responsible for creating angels.\"\"\"\n    def __init__(self, goal: str, global_info: str):\n        self.goal = goal\n        self.global_info = global_info\n        self.create_angels_task_id: Id = ''\n    def decide_to_create_angels(self, angels: list[Angel]) -> PipelineTask:\n        example= [{\n            \"name\": \"Castiel\",\n            \"goal\": \"Save Dean\",",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "Castiel",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "class Castiel:\n    \"\"\"Responsible for taking action\"\"\"\n    pass\ndef get_current_file_source():\n    import sys\n    current_file = sys.modules[__name__].__file__\n    with open(current_file, 'r') as file:\n        return file.read()\n# Run the main function\nif __name__ == \"__main__\":",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "get_current_file_source",
         "kind": 2,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "def get_current_file_source():\n    import sys\n    current_file = sys.modules[__name__].__file__\n    with open(current_file, 'r') as file:\n        return file.read()\n# Run the main function\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Register script with logging.\")\n    parser.add_argument('--log-level', default='WARNING', help='Set the logging level (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL)')\n    args = parser.parse_args()",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "API_KEY",
         "kind": 5,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "API_KEY = os.getenv(\"GEMINI_API_KEY\")\nai.configure(api_key=API_KEY)\nId=str\nPipelineTask = tuple[Id,str]\nclass LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {
         "label": "PipelineTask",
         "kind": 5,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "attempt2",
+        "description": "attempt2",
         "peekOfCode": "PipelineTask = tuple[Id,str]\nclass LLM:\n    @staticmethod\n    async def prompt(prompt: str):\n        start_time = time.time()\n        logging.debug(f\"Started at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}\")\n        model = ai.GenerativeModel(\"gemini-1.5-flash\")\n        response = await model.generate_content_async(prompt)\n        end_time = time.time()\n        logging.debug(f\"Ended at: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(end_time))}\")",
-        "detail": "main",
+        "detail": "attempt2",
         "documentation": {}
     },
     {

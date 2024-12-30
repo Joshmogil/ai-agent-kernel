@@ -1,0 +1,75 @@
+
+
+
+container
+
+directives
+1. Goal
+2. Task File
+
+lode stones
+1. plan_of_action.txt 
+2. verification_method.sh
+2. subtasks.txt
+3. problems.txt
+
+knowledge base
+1. self_research/
+    - compiled text files
+2. provided/
+    - raw text files
+
+routines
+1. BuildMentalModel
+    - Build resource database
+        - Figure out which files are source files
+        - Analyze each source file
+        - Build file store
+            - file types: knowledge, source
+            - build mirror repo, each file gets it's own json counter part
+                - ie main.go -> main.go.json
+                - summary
+                - file type (source, knowledge, blob)
+                - source type
+                    - definitions
+                        - symbol name
+                        - symbol summary
+                - knowledge
+                    - key points
+                    - relevance score
+                - blob
+                    - context
+            - second mirror repo for diffs (diff repo)
+                - diff the orignal files with their diff repo counterparts
+                - check what changed, re-evaluate those files
+
+
+    - Build mental model of how repo works
+        - which files are the most important?
+        - how do they interact?
+        - Create chart describing repo
+
+    X- Install LSP/hack lsp?
+    X- Think about method for testing and verifying changes
+    X- Use LSP to jump around repo and look for errors
+
+    - Goto StopAndThink
+
+2. StopAndThink
+    - BuildMentalModel (will be partial after the first one)
+    - Create/Update Plan of Action
+    - Eval/Reval subtasks and problems
+    - Offer Solutions to problems
+    - Refine Subtasks
+    - Goto MakeChanges
+
+3. MakeChanges
+    - Plan changes aligned with ticket or goal
+    - Make changes
+    - Verify that it runs
+    - Optional - update problems, subtasks, verification_method
+    - Optional continue to make changes
+    - If stumped, goto StopAndThink
+
+
+
